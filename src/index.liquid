@@ -3,19 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Aazam Khan | Portfolio</title>
+    <title>{{ settings.intro_title | default: "Aazam Khan" }} | Portfolio</title>
     
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Netlify Identity Widget for Admin Login -->
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
     <style>
         :root {
-            /* Unified Frosted Glass Tokens */
             --bg-page: #EFEFEF;
             --text-main: #0E0E0E;
             --text-muted: #555555;
@@ -31,377 +27,138 @@
             --btn-radius: 10px;
             --nav-height: 80px;
         }
-
-        *, *::before, *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
         body {
             font-family: 'Inter', sans-serif;
-            font-size: 16px;
-            line-height: 1.6;
-            color: var(--text-main);
+            font-size: 16px; line-height: 1.6; color: var(--text-main);
             background: linear-gradient(135deg, #EFEFEF 0%, #E2E2E2 100%);
-            background-attachment: fixed;
-            -webkit-font-smoothing: antialiased;
+            background-attachment: fixed; -webkit-font-smoothing: antialiased;
         }
-
-        /* Navigation */
         nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: var(--nav-height);
-            background: var(--glass-bg);
-            backdrop-filter: blur(var(--glass-blur));
-            -webkit-backdrop-filter: blur(var(--glass-blur));
-            border-bottom: var(--glass-border);
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 40px;
+            position: fixed; top: 0; left: 0; width: 100%; height: var(--nav-height);
+            background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur));
+            border-bottom: var(--glass-border); z-index: 1000; display: flex;
+            justify-content: space-between; align-items: center; padding: 0 40px;
         }
-
         .nav-logo {
+            font-family: 'Barlow Condensed', sans-serif; font-size: 28px; font-weight: 800;
+            text-transform: uppercase; text-decoration: none; color: var(--text-main); letter-spacing: 1px;
+        }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { text-decoration: none; color: var(--text-main); font-weight: 600; font-size: 14px; text-transform: uppercase; transition: color 0.3s ease; }
+        .nav-links a:hover { color: var(--sec-1); }
+        .container { max-width: 1200px; margin: 0 auto; padding: calc(var(--nav-height) + 40px) 20px 60px; }
+        section { margin-bottom: 60px; }
+        
+        /* Marquee Ticker Styles */
+        .marquee-banner {
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+            background: var(--glass-bg);
+            border-top: var(--glass-border);
+            border-bottom: var(--glass-border);
+            padding: 15px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            margin-bottom: 50px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        }
+        .marquee-track {
+            display: inline-block;
+            animation: marquee 25s linear infinite;
             font-family: 'Barlow Condensed', sans-serif;
-            font-size: 28px;
-            font-weight: 800;
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            text-decoration: none;
-            color: var(--text-main);
-            letter-spacing: 1px;
+            color: var(--text-muted);
         }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-main);
-            font-weight: 600;
-            font-size: 14px;
-            text-transform: uppercase;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--sec-1);
-        }
-
-        /* Layout Container */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: calc(var(--nav-height) + 60px) 20px 60px;
-        }
-
-        /* Shared Section Styles */
-        section {
-            margin-bottom: 80px;
+        @keyframes marquee {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
         }
 
         .section-header {
-            font-family: 'Barlow Condensed', sans-serif;
-            font-size: 48px;
-            font-weight: 800;
-            text-transform: uppercase;
-            margin-bottom: 30px;
-            text-align: center;
-            position: relative;
+            font-family: 'Barlow Condensed', sans-serif; font-size: 48px; font-weight: 800;
+            text-transform: uppercase; margin-bottom: 30px; text-align: center; position: relative;
         }
-
-        .section-header::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 4px;
-            background: var(--sec-1);
-            margin: 10px auto 0;
-            border-radius: 2px;
-        }
-
+        .section-header::after { content: ''; display: block; width: 60px; height: 4px; background: var(--sec-1); margin: 10px auto 0; border-radius: 2px; }
         .glass-panel {
-            background: var(--glass-bg);
-            backdrop-filter: blur(var(--glass-blur));
-            -webkit-backdrop-filter: blur(var(--glass-blur));
-            border: var(--glass-border);
-            box-shadow: var(--glass-shadow);
-            padding: 40px;
-            border-radius: var(--btn-radius);
+            background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur));
+            border: var(--glass-border); box-shadow: var(--glass-shadow); padding: 40px; border-radius: var(--btn-radius);
         }
-
-        /* 1. Landing / Intro Section */
-        .intro-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: center;
-        }
-
-        .intro-content h1 {
-            font-family: 'Barlow Condensed', sans-serif;
-            font-size: 64px;
-            font-weight: 800;
-            text-transform: uppercase;
-            line-height: 1;
-            margin-bottom: 10px;
-        }
-
-        .intro-content h3 {
-            font-family: 'Inter', sans-serif;
-            font-size: 18px;
-            font-weight: 600;
-            color: var(--sec-2);
-            margin-bottom: 20px;
-        }
-
-        .intro-content p {
-            margin-bottom: 20px;
-            color: var(--text-muted);
-        }
-
-        /* Dynamic Media Placeholder - Adapts to media dimensions */
-        .media-placeholder {
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: var(--btn-radius);
-            position: relative;
-        }
+        .intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+        .intro-content h1 { font-family: 'Barlow Condensed', sans-serif; font-size: 64px; font-weight: 800; text-transform: uppercase; line-height: 1; margin-bottom: 10px; }
+        .intro-content h3 { font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 600; color: var(--sec-2); margin-bottom: 20px; }
+        .intro-content p { margin-bottom: 20px; color: var(--text-muted); }
+        .media-placeholder { width: 100%; display: flex; align-items: center; justify-content: center; border-radius: var(--btn-radius); position: relative; }
+        .media-placeholder img, .media-placeholder video { width: 100%; height: auto; display: block; border-radius: var(--btn-radius); box-shadow: var(--glass-shadow); }
+        .empty-state { width: 100%; background: var(--glass-card-bg); border: var(--glass-border); padding: 40px 20px; border-radius: var(--btn-radius); text-align: center; color: var(--text-muted); font-weight: 500; }
         
-        .media-placeholder img, .media-placeholder video {
-            width: 100%;
-            height: auto;
-            display: block;
-            border-radius: var(--btn-radius);
-            box-shadow: var(--glass-shadow);
-        }
-        
-        .empty-state {
-            width: 100%;
-            background: var(--glass-card-bg);
-            border: var(--glass-border);
-            padding: 60px 20px;
-            border-radius: var(--btn-radius);
-            text-align: center;
-            color: var(--text-muted);
-            font-weight: 500;
-        }
+        .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; }
+        .portfolio-card { background: var(--glass-card-bg); border: var(--glass-border); border-radius: var(--btn-radius); overflow: hidden; transition: transform 0.3s ease, border-color 0.3s ease; }
+        .portfolio-card:hover { transform: translateY(-5px); border-color: var(--sec-1); }
+        .portfolio-carousel { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -ms-overflow-style: none; background: rgba(0,0,0,0.05); align-items: center; }
+        .portfolio-carousel::-webkit-scrollbar { display: none; }
+        .carousel-item { flex: 0 0 100%; scroll-snap-align: start; min-width: 100%; display: flex; align-items: center; justify-content: center; }
+        .carousel-item img, .carousel-item video { width: 100%; height: auto; display: block; }
+        .portfolio-info { padding: 20px; }
+        .portfolio-info h4 { font-family: 'Barlow Condensed', sans-serif; font-size: 24px; text-transform: uppercase; margin-bottom: 5px; }
+        .portfolio-info p { font-size: 14px; color: var(--text-muted); }
 
-        /* 2. Portfolio Section */
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 30px;
-        }
-
-        .portfolio-card {
-            background: var(--glass-card-bg);
-            border: var(--glass-border);
-            border-radius: var(--btn-radius);
-            overflow: hidden;
-            transition: transform 0.3s ease;
-        }
-
-        .portfolio-card:hover {
-            transform: translateY(-5px);
-        }
-
-        /* Swipeable Carousel CSS */
-        .portfolio-carousel {
+        /* Testimonials Carousel Section */
+        .testimonials-carousel {
             display: flex;
+            gap: 20px;
             overflow-x: auto;
             scroll-snap-type: x mandatory;
-            scrollbar-width: none; /* Firefox */
-            -ms-overflow-style: none; /* IE/Edge */
-            background: rgba(0,0,0,0.05);
-            align-items: center;
+            padding-bottom: 15px;
+            scrollbar-width: thin;
+            scrollbar-color: var(--sec-1) transparent;
         }
-        
-        .portfolio-carousel::-webkit-scrollbar {
-            display: none; /* Chrome/Safari */
-        }
-
-        .carousel-item {
-            flex: 0 0 100%;
+        .testimonial-card {
+            flex: 0 0 320px;
             scroll-snap-align: start;
-            min-width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .carousel-item img, .carousel-item video {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .portfolio-info {
-            padding: 20px;
-        }
-
-        .portfolio-info h4 {
-            font-family: 'Barlow Condensed', sans-serif;
-            font-size: 24px;
-            text-transform: uppercase;
-            margin-bottom: 5px;
-        }
-
-        .portfolio-info p {
-            font-size: 14px;
-            color: var(--text-muted);
-        }
-
-        /* 3. Services Section */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
-
-        .service-card {
             background: var(--glass-inner-bg);
             border: var(--glass-border);
-            padding: 30px;
+            padding: 25px;
             border-radius: var(--btn-radius);
-            text-align: center;
-        }
-
-        .service-card h4 {
-            font-family: 'Barlow Condensed', sans-serif;
-            font-size: 22px;
-            text-transform: uppercase;
-            margin-bottom: 15px;
-            color: var(--sec-2);
-        }
-
-        /* 4. Resume Section */
-        .resume-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-        }
-
-        .timeline-item {
-            margin-bottom: 30px;
-            padding-left: 20px;
-            border-left: 3px solid var(--sec-1);
-        }
-
-        .timeline-date {
-            font-size: 12px;
-            font-weight: 700;
-            color: var(--sec-1);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 5px;
-        }
-
-        .timeline-title {
-            font-family: 'Barlow Condensed', sans-serif;
-            font-size: 20px;
-            font-weight: 700;
-            text-transform: uppercase;
-        }
-
-        .timeline-subtitle {
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 10px;
-            color: var(--text-muted);
-        }
-
-        .skills-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .skill-badge {
-            background: var(--glass-card-bg);
-            border: var(--glass-border);
-            padding: 8px 16px;
-            border-radius: var(--badge-radius);
-            font-size: 13px;
-            font-weight: 600;
-        }
-
-        /* 5. Contact Section */
-        .contact-form {
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
             display: flex;
             flex-direction: column;
-            gap: 15px;
-            max-width: 600px;
-            margin: 0 auto;
+            justify-content: space-between;
         }
+        .stars { color: var(--sec-1); font-size: 16px; margin-bottom: 12px; }
+        .review-text { font-size: 14px; font-style: italic; color: var(--text-main); margin-bottom: 15px; }
+        .reviewer-name { font-family: 'Barlow Condensed', sans-serif; font-size: 18px; font-weight: 700; text-transform: uppercase; }
 
-        .contact-form input, .contact-form textarea {
-            background: var(--glass-inner-bg);
-            border: var(--glass-border);
-            padding: 15px;
-            border-radius: var(--btn-radius);
-            font-family: 'Inter', sans-serif;
-            font-size: 15px;
-            color: var(--text-main);
-            outline: none;
-            width: 100%;
-        }
-
-        .contact-form textarea {
-            resize: vertical;
-            min-height: 150px;
-        }
-
-        .btn-primary {
-            background-color: var(--sec-1);
-            color: #FFFFFF;
-            border: 1px solid var(--sec-2);
-            padding: 15px 30px;
-            border-radius: var(--btn-radius);
-            font-family: 'Inter', sans-serif;
-            font-weight: 700;
-            font-size: 16px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            text-transform: uppercase;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(1, 186, 239, 0.3);
-        }
-
-        /* Mobile Responsiveness */
-        @media (max-width: 768px) {
-            .intro-grid, .resume-grid {
-                grid-template-columns: 1fr;
-            }
-            .nav-links {
-                display: none;
-            }
-            .intro-content h1 {
-                font-size: 48px;
-            }
-        }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .service-card { background: var(--glass-inner-bg); border: var(--glass-border); padding: 30px; border-radius: var(--btn-radius); text-align: center; }
+        .service-card h4 { font-family: 'Barlow Condensed', sans-serif; font-size: 22px; text-transform: uppercase; margin-bottom: 15px; color: var(--sec-2); }
+        .resume-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        .timeline-item { margin-bottom: 30px; padding-left: 20px; border-left: 3px solid var(--sec-1); }
+        .timeline-date { font-size: 12px; font-weight: 700; color: var(--sec-1); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
+        .timeline-title { font-family: 'Barlow Condensed', sans-serif; font-size: 20px; font-weight: 700; text-transform: uppercase; }
+        .timeline-subtitle { font-size: 14px; font-weight: 600; margin-bottom: 10px; color: var(--text-muted); }
+        .skills-container { display: flex; flex-wrap: wrap; gap: 10px; }
+        .skill-badge { background: var(--glass-card-bg); border: var(--glass-border); padding: 8px 16px; border-radius: var(--badge-radius); font-size: 13px; font-weight: 600; }
+        .contact-form { display: flex; flex-direction: column; gap: 15px; max-width: 600px; margin: 0 auto; }
+        .contact-form input, .contact-form textarea { background: var(--glass-inner-bg); border: var(--glass-border); padding: 15px; border-radius: var(--btn-radius); font-family: 'Inter', sans-serif; font-size: 15px; color: var(--text-main); outline: none; width: 100%; }
+        .contact-form textarea { resize: vertical; min-height: 150px; }
+        .btn-primary { background-color: var(--sec-1); color: #FFFFFF; border: 1px solid var(--sec-2); padding: 15px 30px; border-radius: var(--btn-radius); font-family: 'Inter', sans-serif; font-weight: 700; font-size: 16px; cursor: pointer; transition: all 0.2s ease; text-transform: uppercase; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(1, 186, 239, 0.3); }
+        @media (max-width: 768px) { .intro-grid, .resume-grid { grid-template-columns: 1fr; } .nav-links { display: none; } .intro-content h1 { font-size: 48px; } }
     </style>
 </head>
 <body>
 
-    <!-- Navigation -->
     <nav>
-        <a href="#home" class="nav-logo">Aazam Khan</a>
+        <a href="#home" class="nav-logo">{{ settings.intro_title | default: "Aazam Khan" }}</a>
         <div class="nav-links">
             <a href="#portfolio">Work</a>
             <a href="#services">Services</a>
@@ -416,42 +173,57 @@
         <section id="home">
             <div class="glass-panel intro-grid">
                 <div class="intro-content">
-                    <h1>Aazam Khan</h1>
-                    <h3>Creative Director & Technical Apparel Designer</h3>
-                    <p>I partner with emerging and established brands to bridge the gap between raw aesthetic vision and flawless factory execution. Based in Prayagraj, I engineer ideas so they survive the sample room.</p>
-                    <p>I adapt completely to your custom design language to handle the end-to-end development pipeline. Whether you are launching a highly focused micro-capsule or a comprehensive seasonal drop, I provide the technical blueprints required to elevate your final product.</p>
+                    <h1>{{ settings.intro_title | default: "Aazam Khan" }}</h1>
+                    <h3>{{ settings.intro_subtitle | default: "Creative Director & Technical Apparel Designer" }}</h3>
+                    
+                    {% if settings.bio_1 %}
+                        <p>{{ settings.bio_1 }}</p>
+                    {% else %}
+                        <p>I partner with emerging and established brands to bridge the gap between raw aesthetic vision and flawless factory execution. Based in Prayagraj, I engineer ideas so they survive the sample room.</p>
+                    {% endif %}
+
+                    {% if settings.bio_2 %}
+                        <p>{{ settings.bio_2 }}</p>
+                    {% else %}
+                        <p>I adapt completely to your custom design language to handle the end-to-end development pipeline. Whether you are launching a highly focused micro-capsule or a comprehensive seasonal drop, I provide the technical blueprints required to elevate your final product.</p>
+                    {% endif %}
+                    
                     <a href="#contact" class="btn-primary" style="text-decoration: none; display: inline-block; margin-top: 10px;">Let's Build</a>
                 </div>
                 
-                <!-- Dynamic Media controlled by CMS Settings -->
                 <div class="media-placeholder">
                     {% if settings.intro_image %}
                         {% if settings.intro_image contains '.mp4' or settings.intro_image contains '.webm' or settings.intro_image contains '.mov' %}
                             <video src="{{ settings.intro_image }}" autoplay loop muted playsinline style="width: 100%; height: auto; border-radius: var(--btn-radius); box-shadow: var(--glass-shadow);"></video>
                         {% else %}
-                            <img src="{{ settings.intro_image }}" alt="Aazam Khan">
+                            <img src="{{ settings.intro_image }}" alt="{{ settings.intro_title }}">
                         {% endif %}
                     {% else %}
                         <div class="empty-state">
-                            [ Go to /admin to upload your Intro Image in Site Settings ]
+                            [ Go to /admin to upload your Intro Image ]
                         </div>
                     {% endif %}
                 </div>
             </div>
         </section>
 
+        <!-- MARQUEE TICKER BANNER -->
+        {% if settings.marquee_text %}
+        <div class="marquee-banner">
+            <div class="marquee-track">
+                <span>{{ settings.marquee_text }} &nbsp;&bull;&nbsp; {{ settings.marquee_text }} &nbsp;&bull;&nbsp; {{ settings.marquee_text }} &nbsp;&bull;&nbsp; </span>
+                <span>{{ settings.marquee_text }} &nbsp;&bull;&nbsp; {{ settings.marquee_text }} &nbsp;&bull;&nbsp; {{ settings.marquee_text }} &nbsp;&bull;&nbsp; </span>
+            </div>
+        </div>
+        {% endif %}
+
         <!-- 2. PORTFOLIO / WORK -->
         <section id="portfolio">
             <h2 class="section-header">Selected Works</h2>
-            
             <div class="portfolio-grid">
-                <!-- This Liquid loop automatically creates cards for items added in your Admin Dashboard -->
                 {% for project in collections.portfolio reversed %}
                 <div class="portfolio-card">
-                    <!-- Carousel Container -->
                     <div class="portfolio-carousel">
-                        
-                        <!-- Check for the new Multiple Media Gallery -->
                         {% if project.data.gallery %}
                             {% for item in project.data.gallery %}
                             <div class="carousel-item">
@@ -462,8 +234,6 @@
                                 {% endif %}
                             </div>
                             {% endfor %}
-                            
-                        <!-- Fallback for the first test project you already uploaded -->
                         {% elsif project.data.image %}
                             <div class="carousel-item">
                                 {% if project.data.image contains '.mp4' or project.data.image contains '.webm' or project.data.image contains '.mov' %}
@@ -474,11 +244,9 @@
                             </div>
                         {% endif %}
                     </div>
-                    
                     <div class="portfolio-info">
                         <h4>{{ project.data.title }}</h4>
                         <p>{{ project.data.subtitle }}</p>
-                        <!-- Swipe Hint if there is more than 1 image/video -->
                         {% if project.data.gallery.size > 1 %}
                             <p style="font-size: 11px; opacity: 0.5; margin-top: 5px; text-transform: uppercase; letter-spacing: 1px;">⟷ Swipe to view more</p>
                         {% endif %}
@@ -487,13 +255,11 @@
                 {% endfor %}
             </div>
             
-            <!-- Fallback if no projects exist yet -->
             {% if collections.portfolio.size == 0 or collections.portfolio == empty %}
             <div class="empty-state" style="margin-top: 20px;">
                 No projects uploaded yet. Go to /admin to add your first portfolio piece.
             </div>
             {% endif %}
-            
         </section>
 
         <!-- 3. SERVICES & CLIENTS -->
@@ -501,82 +267,92 @@
             <h2 class="section-header">Services</h2>
             <div class="glass-panel">
                 <div class="services-grid">
-                    <div class="service-card">
-                        <h4>End-to-End Development</h4>
-                        <p>From initial trend research to custom graphic development and precise, factory-ready tech packs.</p>
-                    </div>
-                    <div class="service-card">
-                        <h4>3D Fashion Rendering</h4>
-                        <p>Digital garment visualization using Blender for highly accurate prototyping before physical sampling.</p>
-                    </div>
-                    <div class="service-card">
-                        <h4>E-commerce & Growth</h4>
-                        <p>Shopify liquid customization, UI/UX optimizations, and Meta Ads management to drive direct-to-consumer scale.</p>
-                    </div>
-                    <div class="service-card">
-                        <h4>Brand Directing</h4>
-                        <p>Visual identity formulation, campaign photoshoots, and complete artistic direction for seasonal capsules.</p>
-                    </div>
+                    {% if settings.services %}
+                        {% for service in settings.services %}
+                        <div class="service-card">
+                            <h4>{{ service.title }}</h4>
+                            <p>{{ service.description }}</p>
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="empty-state" style="grid-column: 1 / -1;">
+                            [ Go to /admin -> Site Content & Settings to add your Services ]
+                        </div>
+                    {% endif %}
                 </div>
             </div>
         </section>
+
+        <!-- CUSTOMER REVIEWS / TESTIMONIALS SECTION -->
+        {% if settings.testimonials %}
+        <section id="testimonials">
+            <h2 class="section-header">Customer Reviews</h2>
+            <div class="testimonials-carousel">
+                {% for t in settings.testimonials %}
+                <div class="testimonial-card">
+                    <div>
+                        <div class="stars">
+                            {% if t.stars == 1 %}★☆☆☆☆
+                            {% elsif t.stars == 2 %}★★☆☆☆
+                            {% elsif t.stars == 3 %}★★★☆☆
+                            {% elsif t.stars == 4 %}★★★★☆
+                            {% else %}★★★★★{% endif %}
+                        </div>
+                        <p class="review-text">"{{ t.review }}"</p>
+                    </div>
+                    <div class="reviewer-name">— {{ t.name }}</div>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+        {% endif %}
 
         <!-- 4. RESUME (Experience, Education, Skills) -->
         <section id="resume">
             <h2 class="section-header">Background</h2>
             <div class="glass-panel resume-grid">
                 
-                <!-- Left Column: Experience -->
                 <div>
                     <h3 style="font-family: 'Barlow Condensed'; font-size: 28px; margin-bottom: 20px; text-transform: uppercase;">Experience</h3>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-date">2023 - Present</div>
-                        <div class="timeline-title">Founder & Creative Director</div>
-                        <div class="timeline-subtitle">Valour Clothing Co.</div>
-                        <p style="font-size: 14px; color: var(--text-muted);">Overseeing complete brand trajectory from garment engineering and graphic design to e-commerce operations, logistics, and Meta ad campaigns.</p>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-date">2026 - Present</div>
-                        <div class="timeline-title">Freelance Apparel Designer</div>
-                        <div class="timeline-subtitle">Agency Offerings</div>
-                        <p style="font-size: 14px; color: var(--text-muted);">Providing fashion capsule design, 2D CAD drafting, technical tech pack creation, and production consulting for emerging brands globally.</p>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-date">April 2026</div>
-                        <div class="timeline-title">Alumnus Guest Speaker</div>
-                        <div class="timeline-subtitle">Pearl Utsav, Pearl Academy</div>
-                        <p style="font-size: 14px; color: var(--text-muted);">Invited to speak on industry experience, apparel manufacturing, and brand scaling.</p>
-                    </div>
+                    {% if settings.experience %}
+                        {% for job in settings.experience %}
+                        <div class="timeline-item">
+                            <div class="timeline-date">{{ job.date }}</div>
+                            <div class="timeline-title">{{ job.title }}</div>
+                            <div class="timeline-subtitle">{{ job.subtitle }}</div>
+                            {% if job.description %}
+                                <p style="font-size: 14px; color: var(--text-muted);">{{ job.description }}</p>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="empty-state">[ Add Experience in /admin ]</div>
+                    {% endif %}
                 </div>
 
-                <!-- Right Column: Education & Skills -->
                 <div>
                     <h3 style="font-family: 'Barlow Condensed'; font-size: 28px; margin-bottom: 20px; text-transform: uppercase;">Education</h3>
-                    <div class="timeline-item">
-                        <div class="timeline-date">Graduated 2021</div>
-                        <div class="timeline-title">Fashion Design</div>
-                        <div class="timeline-subtitle">Pearl Academy (Rajouri Campus, Delhi)</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-title">Higher Education</div>
-                        <div class="timeline-subtitle">IGNOU</div>
-                    </div>
+                    {% if settings.education %}
+                        {% for edu in settings.education %}
+                        <div class="timeline-item">
+                            {% if edu.date %}<div class="timeline-date">{{ edu.date }}</div>{% endif %}
+                            <div class="timeline-title">{{ edu.title }}</div>
+                            <div class="timeline-subtitle">{{ edu.subtitle }}</div>
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="empty-state" style="margin-bottom: 30px;">[ Add Education in /admin ]</div>
+                    {% endif %}
 
                     <h3 style="font-family: 'Barlow Condensed'; font-size: 28px; margin-top: 40px; margin-bottom: 20px; text-transform: uppercase;">Toolkit & Skills</h3>
                     <div class="skills-container">
-                        <div class="skill-badge">Adobe Illustrator</div>
-                        <div class="skill-badge">Adobe Photoshop</div>
-                        <div class="skill-badge">Adobe Premiere Pro</div>
-                        <div class="skill-badge">Adobe After Effects</div>
-                        <div class="skill-badge">Adobe Lightroom</div>
-                        <div class="skill-badge">Blender 3D</div>
-                        <div class="skill-badge">Shopify (Liquid)</div>
-                        <div class="skill-badge">Meta Ads Manager</div>
-                        <div class="skill-badge">Jinka PE721</div>
-                        <div class="skill-badge">Photography (Sony/Canon)</div>
+                        {% if settings.skills %}
+                            {% for skill in settings.skills %}
+                                <div class="skill-badge">{{ skill.skill_name }}</div>
+                            {% endfor %}
+                        {% else %}
+                             <div class="empty-state" style="width: 100%;">[ Add Skills in /admin ]</div>
+                        {% endif %}
                     </div>
                 </div>
 
@@ -599,7 +375,6 @@
 
     </div>
 
-    <!-- Script to handle admin login redirects -->
     <script>
       if (window.netlifyIdentity) {
         window.netlifyIdentity.on("init", user => {
