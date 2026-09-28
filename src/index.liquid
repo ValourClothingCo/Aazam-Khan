@@ -51,37 +51,19 @@
         .container { max-width: 1200px; margin: 0 auto; padding: calc(var(--nav-height) + 40px) 20px 60px; }
         section { margin-bottom: 60px; }
         
-        /* Marquee Ticker Styles */
         .marquee-banner {
-            width: 100vw;
-            position: relative;
-            left: 50%;
-            right: 50%;
-            margin-left: -50vw;
-            margin-right: -50vw;
-            background: var(--glass-bg);
-            border-top: var(--glass-border);
-            border-bottom: var(--glass-border);
-            padding: 15px 0;
-            overflow: hidden;
-            white-space: nowrap;
-            margin-bottom: 50px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            width: 100vw; position: relative; left: 50%; right: 50%;
+            margin-left: -50vw; margin-right: -50vw; background: var(--glass-bg);
+            border-top: var(--glass-border); border-bottom: var(--glass-border);
+            padding: 15px 0; overflow: hidden; white-space: nowrap;
+            margin-bottom: 50px; box-shadow: 0 4px 12px rgba(0,0,0,0.03);
         }
         .marquee-track {
-            display: inline-block;
-            animation: marquee 25s linear infinite;
-            font-family: 'Barlow Condensed', sans-serif;
-            font-size: 16px;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--text-muted);
+            display: inline-block; animation: marquee 25s linear infinite;
+            font-family: 'Barlow Condensed', sans-serif; font-size: 16px;
+            font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted);
         }
-        @keyframes marquee {
-            0% { transform: translateX(0%); }
-            100% { transform: translateX(-50%); }
-        }
+        @keyframes marquee { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } }
 
         .section-header {
             font-family: 'Barlow Condensed', sans-serif; font-size: 48px; font-weight: 800;
@@ -111,28 +93,8 @@
         .portfolio-info h4 { font-family: 'Barlow Condensed', sans-serif; font-size: 24px; text-transform: uppercase; margin-bottom: 5px; }
         .portfolio-info p { font-size: 14px; color: var(--text-muted); }
 
-        /* Testimonials Carousel Section */
-        .testimonials-carousel {
-            display: flex;
-            gap: 20px;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            padding-bottom: 15px;
-            scrollbar-width: thin;
-            scrollbar-color: var(--sec-1) transparent;
-        }
-        .testimonial-card {
-            flex: 0 0 320px;
-            scroll-snap-align: start;
-            background: var(--glass-inner-bg);
-            border: var(--glass-border);
-            padding: 25px;
-            border-radius: var(--btn-radius);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
+        .testimonials-carousel { display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 15px; scrollbar-width: thin; scrollbar-color: var(--sec-1) transparent; }
+        .testimonial-card { flex: 0 0 320px; scroll-snap-align: start; background: var(--glass-inner-bg); border: var(--glass-border); padding: 25px; border-radius: var(--btn-radius); box-shadow: 0 4px 15px rgba(0,0,0,0.03); display: flex; flex-direction: column; justify-content: space-between; }
         .stars { color: var(--sec-1); font-size: 16px; margin-bottom: 12px; }
         .review-text { font-size: 14px; font-style: italic; color: var(--text-main); margin-bottom: 15px; }
         .reviewer-name { font-family: 'Barlow Condensed', sans-serif; font-size: 18px; font-weight: 700; text-transform: uppercase; }
@@ -219,7 +181,7 @@
 
         <!-- 2. PORTFOLIO / WORK -->
         <section id="portfolio">
-            <h2 class="section-header">Selected Works</h2>
+            <h2 class="section-header">{{ settings.portfolio_title | default: "Creative Archive" }}</h2>
             <div class="portfolio-grid">
                 {% for project in collections.portfolio reversed %}
                 <div class="portfolio-card">
@@ -331,13 +293,14 @@
                 </div>
 
                 <div>
-                    <h3 style="font-family: 'Barlow Condensed'; font-size: 28px; margin-top: 40px; margin-bottom: 20px; text-transform: uppercase;">Toolkit & Skills</h3>
-                    <div class="skills-container">
-                        {% assign skill_array = settings.skills_string | split: "," %}
-                        {% for s in skill_array %}
-                            <div class="skill-badge">{{ s | strip }}</div>
-                        {% endfor %}
-                    </div>
+                    <h3 style="font-family: 'Barlow Condensed'; font-size: 28px; margin-bottom: 20px; text-transform: uppercase;">Education</h3>
+                    {% if settings.education %}
+                        {% for edu in settings.education %}
+                        <div class="timeline-item">
+                            {% if edu.date %}<div class="timeline-date">{{ edu.date }}</div>{% endif %}
+                            <div class="timeline-title">{{ edu.title }}</div>
+                            <div class="timeline-subtitle">{{ edu.subtitle }}</div>
+                        </div>
                         {% endfor %}
                     {% else %}
                         <div class="empty-state" style="margin-bottom: 30px;">[ Add Education in /admin ]</div>
@@ -345,13 +308,11 @@
 
                     <h3 style="font-family: 'Barlow Condensed'; font-size: 28px; margin-top: 40px; margin-bottom: 20px; text-transform: uppercase;">Toolkit & Skills</h3>
                     <div class="skills-container">
-                        {% if settings.skills %}
-                            {% for skill in settings.skills %}
-                                <div class="skill-badge">{{ skill.skill_name }}</div>
-                            {% endfor %}
-                        {% else %}
-                             <div class="empty-state" style="width: 100%;">[ Add Skills in /admin ]</div>
-                        {% endif %}
+                        {% assign raw_skills = settings.skills_string | default: "Adobe Illustrator, Adobe Photoshop, Blender 3D, Shopify, Meta Ads, Premiere Pro, Jinka PE721, Photography" %}
+                        {% assign skill_array = raw_skills | split: "," %}
+                        {% for s in skill_array %}
+                            <div class="skill-badge">{{ s | strip }}</div>
+                        {% endfor %}
                     </div>
                 </div>
 
@@ -362,7 +323,13 @@
         <section id="contact">
             <h2 class="section-header">Contact Me</h2>
             <div class="glass-panel">
-                <form class="contact-form" action="#" method="POST">
+                <!-- Connected to FormSubmit -->
+                <form class="contact-form" action="https://formsubmit.co/{{ settings.contact_email | default: 'support@valour.co.in' }}" method="POST">
+                    
+                    <!-- FormSubmit Configuration -->
+                    <input type="hidden" name="_subject" value="New Portfolio Inquiry from Aazam Khan Website!">
+                    <input type="hidden" name="_captcha" value="false">
+                    
                     <input type="text" name="name" placeholder="Your Name" required>
                     <input type="email" name="email" placeholder="Your Email Address" required>
                     <input type="text" name="subject" placeholder="Project Subject / Inquiry">
