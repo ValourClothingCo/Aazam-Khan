@@ -14,7 +14,10 @@ collections:
     fields:
       - {label: "Project Title", name: "title", widget: "string"}
       - {label: "Client / Role", name: "subtitle", widget: "string"}
-      - {label: "Featured Media (Image or Video)", name: "image", widget: "file"}
+      - label: "Project Media (Add Multiple Images/Videos)"
+        name: "gallery"
+        widget: "list"
+        field: {label: "Media File", name: "media", widget: "file"}
       
   - name: "settings"
     label: "Site Settings"
