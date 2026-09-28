@@ -20,10 +20,57 @@ collections:
         field: {label: "Media File", name: "media", widget: "file"}
       
   - name: "settings"
-    label: "Site Settings"
+    label: "Site Content & Settings"
     files:
-      - label: "Homepage Intro"
+      - label: "Homepage Content & Layout"
         name: "home_intro"
         file: "src/_data/settings.json"
         fields:
           - {label: "Intro Media (Image or Video)", name: "intro_image", widget: "file", required: false}
+          - {label: "Main Title / Name", name: "intro_title", widget: "string", default: "Aazam Khan"}
+          - {label: "Subtitle / Role", name: "intro_subtitle", widget: "string", default: "Creative Director & Technical Apparel Designer"}
+          - {label: "Bio Paragraph 1", name: "bio_1", widget: "text", required: false}
+          - {label: "Bio Paragraph 2", name: "bio_2", widget: "text", required: false}
+          
+          - label: "Marquee Banner Text (e.g. SHIPPING WORLD WIDE)"
+            name: "marquee_text"
+            widget: "string"
+            default: "SHIPPING WORLD WIDE • STREETWEAR IN MOTION • FACTORY-READY TECH PACKS •"
+            required: false
+
+          - label: "Services Offered"
+            name: "services"
+            widget: "list"
+            fields:
+              - {label: "Service Name", name: "title", widget: "string"}
+              - {label: "Description", name: "description", widget: "text"}
+
+          - label: "Customer Reviews / Testimonials"
+            name: "testimonials"
+            widget: "list"
+            fields:
+              - {label: "Customer Name", name: "name", widget: "string"}
+              - {label: "Review Text", name: "review", widget: "text"}
+              - {label: "Rating (1 to 5 stars)", name: "stars", widget: "number", value_type: "int", min: 1, max: 5, default: 5}
+              
+          - label: "Experience"
+            name: "experience"
+            widget: "list"
+            fields:
+              - {label: "Date / Year", name: "date", widget: "string"}
+              - {label: "Job Title", name: "title", widget: "string"}
+              - {label: "Company / Location", name: "subtitle", widget: "string"}
+              - {label: "Description", name: "description", widget: "text", required: false}
+
+          - label: "Education"
+            name: "education"
+            widget: "list"
+            fields:
+              - {label: "Date / Year (Optional)", name: "date", widget: "string", required: false}
+              - {label: "Degree / Course", name: "title", widget: "string"}
+              - {label: "Institution", name: "subtitle", widget: "string"}
+
+          - label: "Skills & Tools"
+            name: "skills"
+            widget: "list"
+            field: {label: "Skill Name", name: "skill_name", widget: "string"}
