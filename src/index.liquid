@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Netlify Identity Widget -->
+    <!-- Netlify Identity Widget for Admin Login -->
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
     <style>
@@ -170,26 +170,33 @@
             color: var(--text-muted);
         }
 
-        /* Placeholder for Profile/Hero Image or Video */
+        /* Dynamic Media Placeholder - Adapts to media dimensions */
         .media-placeholder {
             width: 100%;
-            aspect-ratio: 4/5;
-            background: var(--glass-card-bg);
-            border: var(--glass-border);
-            border-radius: var(--btn-radius);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--text-muted);
-            font-weight: 500;
-            overflow: hidden;
+            border-radius: var(--btn-radius);
             position: relative;
         }
         
         .media-placeholder img, .media-placeholder video {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            height: auto;
+            display: block;
+            border-radius: var(--btn-radius);
+            box-shadow: var(--glass-shadow);
+        }
+        
+        .empty-state {
+            width: 100%;
+            background: var(--glass-card-bg);
+            border: var(--glass-border);
+            padding: 60px 20px;
+            border-radius: var(--btn-radius);
+            text-align: center;
+            color: var(--text-muted);
+            font-weight: 500;
         }
 
         /* 2. Portfolio Section */
@@ -213,12 +220,18 @@
 
         .portfolio-img {
             width: 100%;
-            height: 250px;
+            /* Height automatically adapts based on content uploaded via CMS */
             background: rgba(0,0,0,0.05);
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
+        }
+        
+        .portfolio-img img {
+            width: 100%;
+            height: auto;
+            display: block;
         }
 
         .portfolio-info {
@@ -395,8 +408,16 @@
                     <p>I adapt completely to your custom design language to handle the end-to-end development pipeline. Whether you are launching a highly focused micro-capsule or a comprehensive seasonal drop, I provide the technical blueprints required to elevate your final product.</p>
                     <a href="#contact" class="btn-primary" style="text-decoration: none; display: inline-block; margin-top: 10px;">Let's Build</a>
                 </div>
+                
+                <!-- Dynamic Image controlled by CMS Settings -->
                 <div class="media-placeholder">
-                    <span>[ Upload Intro Image / Video Here ]</span>
+                    {% if settings.intro_image %}
+                        <img src="{{ settings.intro_image }}" alt="Aazam Khan">
+                    {% else %}
+                        <div class="empty-state">
+                            [ Go to /admin to upload your Intro Image in Site Settings ]
+                        </div>
+                    {% endif %}
                 </div>
             </div>
         </section>
@@ -404,13 +425,13 @@
         <!-- 2. PORTFOLIO / WORK -->
         <section id="portfolio">
             <h2 class="section-header">Selected Works</h2>
+            
             <div class="portfolio-grid">
-                
                 <!-- This Liquid loop automatically creates cards for items added in your Admin Dashboard -->
                 {% for project in collections.portfolio reversed %}
                 <div class="portfolio-card">
                     <div class="portfolio-img">
-                        <img src="{{ project.data.image }}" alt="{{ project.data.title }}" style="width: 100%; height: 100%; object-fit: cover;">
+                        <img src="{{ project.data.image }}" alt="{{ project.data.title }}">
                     </div>
                     <div class="portfolio-info">
                         <h4>{{ project.data.title }}</h4>
@@ -418,8 +439,15 @@
                     </div>
                 </div>
                 {% endfor %}
-
             </div>
+            
+            <!-- Fallback if no projects exist yet -->
+            {% if collections.portfolio.size == 0 or collections.portfolio == empty %}
+            <div class="empty-state" style="margin-top: 20px;">
+                No projects uploaded yet. Go to /admin to add your first portfolio piece.
+            </div>
+            {% endif %}
+            
         </section>
 
         <!-- 3. SERVICES & CLIENTS -->
@@ -459,7 +487,7 @@
                     <div class="timeline-item">
                         <div class="timeline-date">2023 - Present</div>
                         <div class="timeline-title">Founder & Creative Director</div>
-                        <div class="timeline-subtitle">Valour Clothing Co. (Graveyard Kush)</div>
+                        <div class="timeline-subtitle">Valour Clothing Co.</div>
                         <p style="font-size: 14px; color: var(--text-muted);">Overseeing complete brand trajectory from garment engineering and graphic design to e-commerce operations, logistics, and Meta ad campaigns.</p>
                     </div>
 
@@ -501,7 +529,7 @@
                         <div class="skill-badge">Blender 3D</div>
                         <div class="skill-badge">Shopify (Liquid)</div>
                         <div class="skill-badge">Meta Ads Manager</div>
-                        <div class="skill-badge">Tech Pack Creation</div>
+                        <div class="skill-badge">Jinka PE721</div>
                         <div class="skill-badge">Photography (Sony/Canon)</div>
                     </div>
                 </div>
