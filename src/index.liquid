@@ -2,21 +2,406 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Aazam Khan | Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Netlify Identity Widget -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
     <style>
-        /* PASTE ALL THE CSS FROM THE PREVIOUS MESSAGE HERE */
+        :root {
+            /* Unified Frosted Glass Tokens */
+            --bg-page: #EFEFEF;
+            --text-main: #0E0E0E;
+            --text-muted: #555555;
+            --sec-1: #01BAEF;
+            --sec-2: #00799C;
+            --glass-bg: rgba(235, 235, 235, 0.62);
+            --glass-card-bg: rgba(255, 255, 255, 0.42);
+            --glass-inner-bg: rgba(255, 255, 255, 0.55);
+            --glass-blur: 24px;
+            --glass-border: 1px solid rgba(255, 255, 255, 0.75);
+            --glass-shadow: 0 16px 36px rgba(0, 0, 0, 0.08);
+            --badge-radius: 40px;
+            --btn-radius: 10px;
+            --nav-height: 80px;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--text-main);
+            background: linear-gradient(135deg, #EFEFEF 0%, #E2E2E2 100%);
+            background-attachment: fixed;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--nav-height);
+            background: var(--glass-bg);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            border-bottom: var(--glass-border);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 40px;
+        }
+
+        .nav-logo {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 28px;
+            font-weight: 800;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: var(--text-main);
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--sec-1);
+        }
+
+        /* Layout Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: calc(var(--nav-height) + 60px) 20px 60px;
+        }
+
+        /* Shared Section Styles */
+        section {
+            margin-bottom: 80px;
+        }
+
+        .section-header {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 48px;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-header::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--sec-1);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        .glass-panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            border: var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            padding: 40px;
+            border-radius: var(--btn-radius);
+        }
+
+        /* 1. Landing / Intro Section */
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .intro-content h1 {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 64px;
+            font-weight: 800;
+            text-transform: uppercase;
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .intro-content h3 {
+            font-family: 'Inter', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--sec-2);
+            margin-bottom: 20px;
+        }
+
+        .intro-content p {
+            margin-bottom: 20px;
+            color: var(--text-muted);
+        }
+
+        /* Placeholder for Profile/Hero Image or Video */
+        .media-placeholder {
+            width: 100%;
+            aspect-ratio: 4/5;
+            background: var(--glass-card-bg);
+            border: var(--glass-border);
+            border-radius: var(--btn-radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-weight: 500;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .media-placeholder img, .media-placeholder video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* 2. Portfolio Section */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .portfolio-card {
+            background: var(--glass-card-bg);
+            border: var(--glass-border);
+            border-radius: var(--btn-radius);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .portfolio-img {
+            width: 100%;
+            height: 250px;
+            background: rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .portfolio-info {
+            padding: 20px;
+        }
+
+        .portfolio-info h4 {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 24px;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .portfolio-info p {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* 3. Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--glass-inner-bg);
+            border: var(--glass-border);
+            padding: 30px;
+            border-radius: var(--btn-radius);
+            text-align: center;
+        }
+
+        .service-card h4 {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 22px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            color: var(--sec-2);
+        }
+
+        /* 4. Resume Section */
+        .resume-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .timeline-item {
+            margin-bottom: 30px;
+            padding-left: 20px;
+            border-left: 3px solid var(--sec-1);
+        }
+
+        .timeline-date {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--sec-1);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .timeline-title {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .timeline-subtitle {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--text-muted);
+        }
+
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-badge {
+            background: var(--glass-card-bg);
+            border: var(--glass-border);
+            padding: 8px 16px;
+            border-radius: var(--badge-radius);
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        /* 5. Contact Section */
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-form input, .contact-form textarea {
+            background: var(--glass-inner-bg);
+            border: var(--glass-border);
+            padding: 15px;
+            border-radius: var(--btn-radius);
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            color: var(--text-main);
+            outline: none;
+            width: 100%;
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .btn-primary {
+            background-color: var(--sec-1);
+            color: #FFFFFF;
+            border: 1px solid var(--sec-2);
+            padding: 15px 30px;
+            border-radius: var(--btn-radius);
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(1, 186, 239, 0.3);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .intro-grid, .resume-grid {
+                grid-template-columns: 1fr;
+            }
+            .nav-links {
+                display: none;
+            }
+            .intro-content h1 {
+                font-size: 48px;
+            }
+        }
     </style>
 </head>
 <body>
 
-    <!-- Paste the Navigation and Intro Section from the previous code here -->
+    <!-- Navigation -->
+    <nav>
+        <a href="#home" class="nav-logo">Aazam Khan</a>
+        <div class="nav-links">
+            <a href="#portfolio">Work</a>
+            <a href="#services">Services</a>
+            <a href="#resume">Experience</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
 
     <div class="container">
-        <!-- PORTFOLIO / WORK -->
+        
+        <!-- 1. LANDING / INTRO -->
+        <section id="home">
+            <div class="glass-panel intro-grid">
+                <div class="intro-content">
+                    <h1>Aazam Khan</h1>
+                    <h3>Creative Director & Technical Apparel Designer</h3>
+                    <p>I partner with emerging and established brands to bridge the gap between raw aesthetic vision and flawless factory execution. Based in Prayagraj, I engineer ideas so they survive the sample room.</p>
+                    <p>I adapt completely to your custom design language to handle the end-to-end development pipeline. Whether you are launching a highly focused micro-capsule or a comprehensive seasonal drop, I provide the technical blueprints required to elevate your final product.</p>
+                    <a href="#contact" class="btn-primary" style="text-decoration: none; display: inline-block; margin-top: 10px;">Let's Build</a>
+                </div>
+                <div class="media-placeholder">
+                    <span>[ Upload Intro Image / Video Here ]</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. PORTFOLIO / WORK -->
         <section id="portfolio">
             <h2 class="section-header">Selected Works</h2>
             <div class="portfolio-grid">
@@ -37,7 +422,107 @@
             </div>
         </section>
 
-        <!-- Paste the Services, Experience, and Contact sections from the previous code here -->
+        <!-- 3. SERVICES & CLIENTS -->
+        <section id="services">
+            <h2 class="section-header">Services</h2>
+            <div class="glass-panel">
+                <div class="services-grid">
+                    <div class="service-card">
+                        <h4>End-to-End Development</h4>
+                        <p>From initial trend research to custom graphic development and precise, factory-ready tech packs.</p>
+                    </div>
+                    <div class="service-card">
+                        <h4>3D Fashion Rendering</h4>
+                        <p>Digital garment visualization using Blender for highly accurate prototyping before physical sampling.</p>
+                    </div>
+                    <div class="service-card">
+                        <h4>E-commerce & Growth</h4>
+                        <p>Shopify liquid customization, UI/UX optimizations, and Meta Ads management to drive direct-to-consumer scale.</p>
+                    </div>
+                    <div class="service-card">
+                        <h4>Brand Directing</h4>
+                        <p>Visual identity formulation, campaign photoshoots, and complete artistic direction for seasonal capsules.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. RESUME (Experience, Education, Skills) -->
+        <section id="resume">
+            <h2 class="section-header">Background</h2>
+            <div class="glass-panel resume-grid">
+                
+                <!-- Left Column: Experience -->
+                <div>
+                    <h3 style="font-family: 'Barlow Condensed'; font-size: 28px; margin-bottom: 20px; text-transform: uppercase;">Experience</h3>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">2023 - Present</div>
+                        <div class="timeline-title">Founder & Creative Director</div>
+                        <div class="timeline-subtitle">Valour Clothing Co. (Graveyard Kush)</div>
+                        <p style="font-size: 14px; color: var(--text-muted);">Overseeing complete brand trajectory from garment engineering and graphic design to e-commerce operations, logistics, and Meta ad campaigns.</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-date">2026 - Present</div>
+                        <div class="timeline-title">Freelance Apparel Designer</div>
+                        <div class="timeline-subtitle">Agency Offerings</div>
+                        <p style="font-size: 14px; color: var(--text-muted);">Providing fashion capsule design, 2D CAD drafting, technical tech pack creation, and production consulting for emerging brands globally.</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">April 2026</div>
+                        <div class="timeline-title">Alumnus Guest Speaker</div>
+                        <div class="timeline-subtitle">Pearl Utsav, Pearl Academy</div>
+                        <p style="font-size: 14px; color: var(--text-muted);">Invited to speak on industry experience, apparel manufacturing, and brand scaling.</p>
+                    </div>
+                </div>
+
+                <!-- Right Column: Education & Skills -->
+                <div>
+                    <h3 style="font-family: 'Barlow Condensed'; font-size: 28px; margin-bottom: 20px; text-transform: uppercase;">Education</h3>
+                    <div class="timeline-item">
+                        <div class="timeline-date">Graduated 2021</div>
+                        <div class="timeline-title">Fashion Design</div>
+                        <div class="timeline-subtitle">Pearl Academy (Rajouri Campus, Delhi)</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-title">Higher Education</div>
+                        <div class="timeline-subtitle">IGNOU</div>
+                    </div>
+
+                    <h3 style="font-family: 'Barlow Condensed'; font-size: 28px; margin-top: 40px; margin-bottom: 20px; text-transform: uppercase;">Toolkit & Skills</h3>
+                    <div class="skills-container">
+                        <div class="skill-badge">Adobe Illustrator</div>
+                        <div class="skill-badge">Adobe Photoshop</div>
+                        <div class="skill-badge">Adobe Premiere Pro</div>
+                        <div class="skill-badge">Adobe After Effects</div>
+                        <div class="skill-badge">Adobe Lightroom</div>
+                        <div class="skill-badge">Blender 3D</div>
+                        <div class="skill-badge">Shopify (Liquid)</div>
+                        <div class="skill-badge">Meta Ads Manager</div>
+                        <div class="skill-badge">Tech Pack Creation</div>
+                        <div class="skill-badge">Photography (Sony/Canon)</div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 5. CONTACT ME -->
+        <section id="contact">
+            <h2 class="section-header">Contact Me</h2>
+            <div class="glass-panel">
+                <form class="contact-form" action="#" method="POST">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email Address" required>
+                    <input type="text" name="subject" placeholder="Project Subject / Inquiry">
+                    <textarea name="message" placeholder="Tell me about your project or collection..." required></textarea>
+                    <button type="submit" class="btn-primary">Send Message</button>
+                </form>
+            </div>
+        </section>
+
     </div>
 
     <!-- Script to handle admin login redirects -->
