@@ -331,14 +331,16 @@
                 </div>
 
                 <div>
-                    <h3 style="font-family: 'Barlow Condensed'; font-size: 28px; margin-bottom: 20px; text-transform: uppercase;">Education</h3>
-                    {% if settings.education %}
-                        {% for edu in settings.education %}
-                        <div class="timeline-item">
-                            {% if edu.date %}<div class="timeline-date">{{ edu.date }}</div>{% endif %}
-                            <div class="timeline-title">{{ edu.title }}</div>
-                            <div class="timeline-subtitle">{{ edu.subtitle }}</div>
-                        </div>
+                    <h3 style="font-family: 'Barlow Condensed'; font-size: 28px; margin-top: 40px; margin-bottom: 20px; text-transform: uppercase;">Toolkit & Skills</h3>
+                    <div class="skills-container">
+                        {% if settings.skills %}
+                            {% for skill in settings.skills %}
+                                <div class="skill-badge">{{ skill.skill_name | default: skill.value | default: skill }}</div>
+                            {% endfor %}
+                        {% else %}
+                             <div class="empty-state" style="width: 100%;">[ Add Skills in /admin ]</div>
+                        {% endif %}
+                    </div>
                         {% endfor %}
                     {% else %}
                         <div class="empty-state" style="margin-bottom: 30px;">[ Add Education in /admin ]</div>
