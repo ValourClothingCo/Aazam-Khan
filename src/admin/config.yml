@@ -20,7 +20,7 @@ collections:
         widget: "list"
         required: false
         field: {label: "Media File", name: "media", widget: "file"}
-      - {label: "Full Page Design (Add your images, videos, and full text here!)", name: "body", widget: "markdown"}
+      - {label: "Full Page Design (Build your custom layout here!)", name: "body", widget: "markdown", required: false}
       
   - name: "settings"
     label: "Site Content & Settings"
