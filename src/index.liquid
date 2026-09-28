@@ -333,19 +333,10 @@
                 <div>
                     <h3 style="font-family: 'Barlow Condensed'; font-size: 28px; margin-top: 40px; margin-bottom: 20px; text-transform: uppercase;">Toolkit & Skills</h3>
                     <div class="skills-container">
-                        {% if settings.skills %}
-                            {% for skill in settings.skills %}
-                                {% if skill.skill_name %}
-                                    <div class="skill-badge">{{ skill.skill_name }}</div>
-                                {% elsif skill.value %}
-                                    <div class="skill-badge">{{ skill.value }}</div>
-                                {% else %}
-                                    <div class="skill-badge">{{ skill }}</div>
-                                {% endif %}
-                            {% endfor %}
-                        {% else %}
-                             <div class="empty-state" style="width: 100%;">[ Add Skills in /admin ]</div>
-                        {% endif %}
+                        {% assign skill_array = settings.skills_string | split: "," %}
+                        {% for s in skill_array %}
+                            <div class="skill-badge">{{ s | strip }}</div>
+                        {% endfor %}
                     </div>
                         {% endfor %}
                     {% else %}
