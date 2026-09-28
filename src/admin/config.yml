@@ -14,12 +14,13 @@ collections:
     fields:
       - {label: "System Tag (Do Not Edit)", name: "tags", widget: "hidden", default: "portfolio"}
       - {label: "Project Title", name: "title", widget: "string"}
-      - {label: "Client / Role", name: "subtitle", widget: "string"}
-      - label: "Project Media (Add Multiple Images/Videos)"
+      - {label: "Short Description (For Homepage Card)", name: "subtitle", widget: "text"}
+      - label: "Homepage Preview Media (Images/Videos for the card)"
         name: "gallery"
         widget: "list"
         required: false
         field: {label: "Media File", name: "media", widget: "file"}
+      - {label: "Full Page Design (Add your images, videos, and full text here!)", name: "body", widget: "markdown"}
       
   - name: "settings"
     label: "Site Content & Settings"
