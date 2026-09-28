@@ -1,4 +1,5 @@
 {
+  "portfolio_title": "CREATIVE ARCHIVE",
   "skills": [
     "Adobe Illustrator",
     "Adobe Photoshop",
@@ -66,8 +67,10 @@
   ],
   "marquee_text": "Let’s build your next collection.",
   "intro_subtitle": "Creative Director & Technical Apparel Designer",
+  "skills_string": "Adobe Illustrator, Adobe Photoshop, Blender 3D, Shopify, Meta Ads, Premiere Pro, Fashion Photography, Social Media Management, ",
   "bio_1": "I partner with emerging and established brands to bridge the gap between raw aesthetic vision and flawless factory execution. As a trained fashion designer and the creative director behind Valour Clothing Co., I understand that scaling an apparel brand requires more than just applying good graphics to blank garments—it requires engineering.​​​​​​​",
   "bio_2": "Many brands struggle to translate their unique visual identity into garments that manufacturers can actually produce without costly errors. My focus is entirely on closing that gap. I don’t just design clothing; I engineer your ideas, so they survive the sample room.\nI adapt completely to your custom design language to handle the end-to-end development pipeline. From initial trend research, custom graphic development, and rendering to complex cut-and-sew silhouettes and precise, factory-ready tech packs, I ensure your exact specifications are communicated flawlessly to the factory floor.\nWhether you are launching a highly focused micro-capsule or a comprehensive seasonal drop, I provide the technical blueprints and creative direction required to elevate your final product and protect your investment.",
+  "contact_email": "support@valour.co.in",
   "services": [
     {
       "title": "End-to-End Development",
