@@ -1,6 +1,6 @@
 backend:
   name: git-gateway
-  branch: main # Set to your GitHub default branch
+  branch: main
 
 media_folder: "src/uploads"
 public_folder: "/uploads"
@@ -13,5 +13,14 @@ collections:
     slug: "{{slug}}"
     fields:
       - {label: "Project Title", name: "title", widget: "string"}
-      - {label: "Client / Role (e.g., Seasonal Drop, Tech Pack)", name: "subtitle", widget: "string"}
+      - {label: "Client / Role", name: "subtitle", widget: "string"}
       - {label: "Featured Image", name: "image", widget: "image"}
+      
+  - name: "settings"
+    label: "Site Settings"
+    files:
+      - label: "Homepage Intro"
+        name: "home_intro"
+        file: "src/_data/settings.json"
+        fields:
+          - {label: "Intro Image", name: "intro_image", widget: "image", required: false}
