@@ -14,7 +14,7 @@ collections:
     fields:
       - {label: "Project Title", name: "title", widget: "string"}
       - {label: "Client / Role", name: "subtitle", widget: "string"}
-      - {label: "Featured Image", name: "image", widget: "image"}
+      - {label: "Featured Media (Image or Video)", name: "image", widget: "file"}
       
   - name: "settings"
     label: "Site Settings"
@@ -23,4 +23,4 @@ collections:
         name: "home_intro"
         file: "src/_data/settings.json"
         fields:
-          - {label: "Intro Image", name: "intro_image", widget: "image", required: false}
+          - {label: "Intro Media (Image or Video)", name: "intro_image", widget: "file", required: false}
