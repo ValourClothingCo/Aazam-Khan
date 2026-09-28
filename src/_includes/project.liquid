@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} | Aazam Khan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-page: #EFEFEF; --text-main: #0E0E0E; --text-muted: #555555;
+            --sec-1: #01BAEF; --sec-2: #00799C;
+            --glass-bg: rgba(235, 235, 235, 0.62); --glass-border: 1px solid rgba(255, 255, 255, 0.75);
+            --glass-shadow: 0 16px 36px rgba(0, 0, 0, 0.08); --btn-radius: 10px;
+        }
+        body {
+            font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #EFEFEF 0%, #E2E2E2 100%);
+            color: var(--text-main); margin: 0; padding: 0; line-height: 1.6;
+        }
+        nav {
+            padding: 20px 40px; background: var(--glass-bg); backdrop-filter: blur(24px);
+            border-bottom: var(--glass-border); position: sticky; top: 0; z-index: 100;
+        }
+        .back-btn {
+            text-decoration: none; font-family: 'Barlow Condensed', sans-serif; font-size: 20px;
+            font-weight: 700; color: var(--text-main); text-transform: uppercase;
+        }
+        .back-btn:hover { color: var(--sec-1); }
+        
+        .container { max-width: 900px; margin: 60px auto; padding: 0 20px; }
+        .glass-panel {
+            background: var(--glass-bg); backdrop-filter: blur(24px); border: var(--glass-border);
+            box-shadow: var(--glass-shadow); padding: 50px; border-radius: var(--btn-radius);
+        }
+        h1 { font-family: 'Barlow Condensed', sans-serif; font-size: 56px; text-transform: uppercase; margin: 0 0 10px 0; line-height: 1.1; }
+        .role { color: var(--sec-1); font-weight: 600; margin-bottom: 40px; font-size: 18px; }
+        
+        /* This styles the customizable content you make in the dashboard */
+        .custom-content img, .custom-content video { max-width: 100%; height: auto; border-radius: 10px; margin: 20px 0; box-shadow: var(--glass-shadow); }
+        .custom-content h2, .custom-content h3 { font-family: 'Barlow Condensed', sans-serif; text-transform: uppercase; margin-top: 40px; }
+        .custom-content p { font-size: 16px; color: var(--text-muted); margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="/" class="back-btn">← Back to Portfolio</a>
+    </nav>
+
+    <div class="container">
+        <div class="glass-panel">
+            <h1>{{ title }}</h1>
+            <div class="role">{{ subtitle }}</div>
+            
+            <!-- MAGIC TAG: This injects whatever you design in the Markdown editor -->
+            <div class="custom-content">
+                {{ content }}
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
