@@ -190,28 +190,25 @@
                             {% for item in project.data.gallery %}
                             <div class="carousel-item">
                                 {% if item contains '.mp4' or item contains '.webm' or item contains '.mov' %}
-                                    <video src="{{ item }}" autoplay loop muted playsinline></video>
+                                    <!-- Preload metadata speeds up load times -->
+                                    <video src="{{ item }}" preload="metadata" autoplay loop muted playsinline loading="lazy"></video>
                                 {% else %}
-                                    <img src="{{ item }}" alt="{{ project.data.title }}">
+                                    <!-- Lazy loading prevents images from downloading until user scrolls -->
+                                    <img src="{{ item }}" alt="{{ project.data.title }}" loading="lazy">
                                 {% endif %}
                             </div>
                             {% endfor %}
-                        {% elsif project.data.image %}
-                            <div class="carousel-item">
-                                {% if project.data.image contains '.mp4' or project.data.image contains '.webm' or project.data.image contains '.mov' %}
-                                    <video src="{{ project.data.image }}" autoplay loop muted playsinline></video>
-                                {% else %}
-                                    <img src="{{ project.data.image }}" alt="{{ project.data.title }}">
-                                {% endif %}
-                            </div>
                         {% endif %}
                     </div>
                     <div class="portfolio-info">
                         <h4>{{ project.data.title }}</h4>
-                        <p>{{ project.data.subtitle }}</p>
-                        {% if project.data.gallery.size > 1 %}
-                            <p style="font-size: 11px; opacity: 0.5; margin-top: 5px; text-transform: uppercase; letter-spacing: 1px;">⟷ Swipe to view more</p>
-                        {% endif %}
+                        <!-- CSS Line-Clamp truncates long text to 3 lines -->
+                        <p style="font-size: 14px; color: var(--text-muted); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 20px;">
+                            {{ project.data.subtitle }}
+                        </p>
+                        
+                        <!-- Open Project Button -->
+                        <a href="{{ project.url }}" style="display: inline-block; background: var(--sec-1); color: white; padding: 8px 16px; border-radius: 6px; text-decoration: none; font-size: 14px; font-weight: 600; text-transform: uppercase;">View Full Project →</a>
                     </div>
                 </div>
                 {% endfor %}
