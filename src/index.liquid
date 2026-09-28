@@ -335,7 +335,13 @@
                     <div class="skills-container">
                         {% if settings.skills %}
                             {% for skill in settings.skills %}
-                                <div class="skill-badge">{{ skill.skill_name | default: skill.value | default: skill }}</div>
+                                {% if skill.skill_name %}
+                                    <div class="skill-badge">{{ skill.skill_name }}</div>
+                                {% elsif skill.value %}
+                                    <div class="skill-badge">{{ skill.value }}</div>
+                                {% else %}
+                                    <div class="skill-badge">{{ skill }}</div>
+                                {% endif %}
                             {% endfor %}
                         {% else %}
                              <div class="empty-state" style="width: 100%;">[ Add Skills in /admin ]</div>
