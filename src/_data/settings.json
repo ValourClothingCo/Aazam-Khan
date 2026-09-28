@@ -1,3 +1,89 @@
 {
-  "intro_image": "/uploads/details-1.mp4"
+  "skills": [
+    "Adobe Illustrator",
+    "Adobe Photoshop",
+    "Adobe Premiere Pro",
+    "Adobe After Effects",
+    "Adobe Lightroom",
+    "Blender 3D",
+    "Clo 3D",
+    "Shopify (Liquid)",
+    "Meta Ads Manager",
+    "Fashion Photography",
+    "Social Media Management"
+  ],
+  "intro_title": "Aazam Khan",
+  "intro_image": "/uploads/details-1.mp4",
+  "education": [
+    {
+      "date": "Graduated 2021",
+      "title": "Fashion Design",
+      "subtitle": "Pearl Academy (Rajouri Campus, Delhi)"
+    },
+    {
+      "title": "Business Administration",
+      "subtitle": "Indira Gandhi National Open University (IGNOU)",
+      "date": "2027"
+    }
+  ],
+  "experience": [
+    {
+      "title": "Alumnus Guest Speaker",
+      "subtitle": "Pearl Utsav, Pearl Academy",
+      "description": "Invited to speak on industry experience, apparel manufacturing, and brand scaling.",
+      "date": "April 2026"
+    },
+    {
+      "date": "January 2021 - Present",
+      "title": "Founder | Creative Director",
+      "subtitle": "Valour Clothing Co.",
+      "description": "Conceptualized, founded, and directed the creative trajectory of the brand, establishing the foundational aesthetic and product philosophy that defined our position in the streetwear market.\n​Set the seasonal and long-term design strategy for all collections, personally directing the research, development, and execution to maintain market relevance and competitive differentiation.\n​Acted as the chief brand steward, leading strategic cross-functional collaboration with the Marketing and Sales teams to ensure a singular, compelling brand narrative across all visual communications, campaigns, and retail experiences.\n​Recruited, mentored, and empowered a high-performing design team, fostering a collaborative environment to drive continuous innovation and develop next-generation creative leadership."
+    },
+    {
+      "date": "June 2022 - December 2022",
+      "title": "Associate Fashion Designer",
+      "subtitle": "DBS Lifestyle",
+      "description": "Contributed to the design process for lifestyle products, focusing on trend research, sketching, and tech pack creation.\n\nCoordinated with suppliers and manufacturers to ensure the timely production of samples and final products.\n\nActively participated in fit sessions and made necessary adjustments to achieve desired design outcomes."
+    },
+    {
+      "subtitle": "The Tape Recorder",
+      "title": "Graphic Designer",
+      "date": "June 2020 - July 2021",
+      "description": "Utilized graphic design and motion graphics skills to create engaging visual content for The Tape Recorder.\n\nContributed to the conceptualization and execution of multimedia projects, including animations, videos, and digital advertisements.\n\nMaintained brand consistency across all visual assets and effectively communicated project objectives to stakeholders."
+    },
+    {
+      "title": "Fashion Designer",
+      "subtitle": "Varun Bahl",
+      "description": "Supported the design team at Varun Bahl, focusing on creating innovative menswear designs.\n\nAssisted in the development of seasonal collections, from conceptualization to execution.\n\nConducted research on market trends and competitor analysis to inform design direction.",
+      "date": "January 2020 - March 2020"
+    },
+    {
+      "title": "Graphic Designer",
+      "subtitle": "Nutrition By Loveneet (NBL)",
+      "date": "December 2018 - February 2019",
+      "description": "Managed graphic design projects and social media accounts for Nutrition By Loveneet, a health and wellness brand.\n\nCreated visually compelling content for digital platforms, including social media posts, infographics, and promotional materials.\n\nCollaborated with marketing team to develop and implement social media strategies to increase brand visibility and engagement."
+    }
+  ],
+  "marquee_text": "Let’s build your next collection.",
+  "intro_subtitle": "Creative Director & Technical Apparel Designer",
+  "bio_1": "I partner with emerging and established brands to bridge the gap between raw aesthetic vision and flawless factory execution. As a trained fashion designer and the creative director behind Valour Clothing Co., I understand that scaling an apparel brand requires more than just applying good graphics to blank garments—it requires engineering.​​​​​​​",
+  "bio_2": "Many brands struggle to translate their unique visual identity into garments that manufacturers can actually produce without costly errors. My focus is entirely on closing that gap. I don’t just design clothing; I engineer your ideas, so they survive the sample room.\nI adapt completely to your custom design language to handle the end-to-end development pipeline. From initial trend research, custom graphic development, and rendering to complex cut-and-sew silhouettes and precise, factory-ready tech packs, I ensure your exact specifications are communicated flawlessly to the factory floor.\nWhether you are launching a highly focused micro-capsule or a comprehensive seasonal drop, I provide the technical blueprints and creative direction required to elevate your final product and protect your investment.",
+  "services": [
+    {
+      "title": "End-to-End Development",
+      "description": "From initial trend research to custom graphic development and precise, factory-ready tech packs."
+    },
+    {
+      "title": "Fashion Rendering",
+      "description": "Digital garment visualization for highly accurate prototyping before physical sampling."
+    },
+    {
+      "title": "E-commerce & Growth",
+      "description": "Shopify liquid customization, UI/UX optimizations, and Meta Ads management to drive direct-to-consumer scale."
+    },
+    {
+      "title": "Brand Directing",
+      "description": "Visual identity formulation, campaign photoshoots, and complete artistic direction for seasonal capsules."
+    }
+  ]
 }
