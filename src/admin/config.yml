@@ -12,11 +12,13 @@ collections:
     create: true
     slug: "{{slug}}"
     fields:
+      - {label: "System Tag (Do Not Edit)", name: "tags", widget: "hidden", default: "portfolio"}
       - {label: "Project Title", name: "title", widget: "string"}
       - {label: "Client / Role", name: "subtitle", widget: "string"}
       - label: "Project Media (Add Multiple Images/Videos)"
         name: "gallery"
         widget: "list"
+        required: false
         field: {label: "Media File", name: "media", widget: "file"}
       
   - name: "settings"
@@ -32,6 +34,16 @@ collections:
           - {label: "Bio Paragraph 1", name: "bio_1", widget: "text", required: false}
           - {label: "Bio Paragraph 2", name: "bio_2", widget: "text", required: false}
           
+          - label: "Contact Form Email (Where messages are sent)"
+            name: "contact_email"
+            widget: "string"
+            default: "support@valour.co.in"
+
+          - label: "Portfolio Section Title"
+            name: "portfolio_title"
+            widget: "string"
+            default: "Creative Archive"
+
           - label: "Marquee Banner Text (e.g. SHIPPING WORLD WIDE)"
             name: "marquee_text"
             widget: "string"
@@ -41,6 +53,7 @@ collections:
           - label: "Services Offered"
             name: "services"
             widget: "list"
+            required: false
             fields:
               - {label: "Service Name", name: "title", widget: "string"}
               - {label: "Description", name: "description", widget: "text"}
@@ -48,6 +61,7 @@ collections:
           - label: "Customer Reviews / Testimonials"
             name: "testimonials"
             widget: "list"
+            required: false
             fields:
               - {label: "Customer Name", name: "name", widget: "string"}
               - {label: "Review Text", name: "review", widget: "text"}
@@ -56,6 +70,7 @@ collections:
           - label: "Experience"
             name: "experience"
             widget: "list"
+            required: false
             fields:
               - {label: "Date / Year", name: "date", widget: "string"}
               - {label: "Job Title", name: "title", widget: "string"}
@@ -65,6 +80,7 @@ collections:
           - label: "Education"
             name: "education"
             widget: "list"
+            required: false
             fields:
               - {label: "Date / Year (Optional)", name: "date", widget: "string", required: false}
               - {label: "Degree / Course", name: "title", widget: "string"}
