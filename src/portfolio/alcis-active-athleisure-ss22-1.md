@@ -17,4 +17,4 @@ gallery:
   - /uploads/ss22-valour-clothing-co.-x-alcis-04.jpg
   - /uploads/ss22-valour-clothing-co.-x-alcis-05.jpg
 ---
-To guarantee accurate bulk production, the tech packs include exact Pantone (TPG) colorway matching across complex SKUs, alongside intricate trim developments like custom elasticated waistbands, contrast piping, and dyed-to-match drawcords. The project also illustrates meticulous graphic design integration, detailing the exact scale, base color
+To guarantee accurate bulk production, the tech packs include exact Pantone (TPG) colorway matching across complex SKUs, alongside intricate trim developments like custom elasticated waistbands, contrast piping, and dyed-to-match drawcords. The project also illustrates meticulous graphic design integration, detailing the exact scale and base color.
