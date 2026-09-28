@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aazam Khan | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    
+    <style>
+        /* PASTE ALL THE CSS FROM THE PREVIOUS MESSAGE HERE */
+    </style>
+</head>
+<body>
+
+    <!-- Paste the Navigation and Intro Section from the previous code here -->
+
+    <div class="container">
+        <!-- PORTFOLIO / WORK -->
+        <section id="portfolio">
+            <h2 class="section-header">Selected Works</h2>
+            <div class="portfolio-grid">
+                
+                <!-- This Liquid loop automatically creates cards for items added in your Admin Dashboard -->
+                {% for project in collections.portfolio reversed %}
+                <div class="portfolio-card">
+                    <div class="portfolio-img">
+                        <img src="{{ project.data.image }}" alt="{{ project.data.title }}" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="portfolio-info">
+                        <h4>{{ project.data.title }}</h4>
+                        <p>{{ project.data.subtitle }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+
+            </div>
+        </section>
+
+        <!-- Paste the Services, Experience, and Contact sections from the previous code here -->
+    </div>
+
+    <!-- Script to handle admin login redirects -->
+    <script>
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on("init", user => {
+          if (!user) {
+            window.netlifyIdentity.on("login", () => { document.location.href = "/admin/"; });
+          }
+        });
+      }
+    </script>
+</body>
+</html>

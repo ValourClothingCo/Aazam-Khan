@@ -1,0 +1,17 @@
+backend:
+  name: git-gateway
+  branch: main # Set to your GitHub default branch
+
+media_folder: "src/uploads"
+public_folder: "/uploads"
+
+collections:
+  - name: "portfolio"
+    label: "Portfolio Projects"
+    folder: "src/portfolio"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Project Title", name: "title", widget: "string"}
+      - {label: "Client / Role (e.g., Seasonal Drop, Tech Pack)", name: "subtitle", widget: "string"}
+      - {label: "Featured Image", name: "image", widget: "image"}
