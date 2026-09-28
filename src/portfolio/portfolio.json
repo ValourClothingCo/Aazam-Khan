@@ -1,3 +1,4 @@
 {
-  "tags": "portfolio"
+  "tags": "portfolio",
+  "layout": "project.liquid"
 }
