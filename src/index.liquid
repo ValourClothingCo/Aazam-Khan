@@ -218,17 +218,31 @@
             transform: translateY(-5px);
         }
 
-        .portfolio-img {
-            width: 100%;
-            /* Height automatically adapts based on content uploaded via CMS */
+        /* Swipeable Carousel CSS */
+        .portfolio-carousel {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE/Edge */
             background: rgba(0,0,0,0.05);
+            align-items: center;
+        }
+        
+        .portfolio-carousel::-webkit-scrollbar {
+            display: none; /* Chrome/Safari */
+        }
+
+        .carousel-item {
+            flex: 0 0 100%;
+            scroll-snap-align: start;
+            min-width: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
         }
         
-        .portfolio-img img {
+        .carousel-item img, .carousel-item video {
             width: 100%;
             height: auto;
             display: block;
@@ -409,10 +423,14 @@
                     <a href="#contact" class="btn-primary" style="text-decoration: none; display: inline-block; margin-top: 10px;">Let's Build</a>
                 </div>
                 
-                <!-- Dynamic Image controlled by CMS Settings -->
+                <!-- Dynamic Media controlled by CMS Settings -->
                 <div class="media-placeholder">
                     {% if settings.intro_image %}
-                        <img src="{{ settings.intro_image }}" alt="Aazam Khan">
+                        {% if settings.intro_image contains '.mp4' or settings.intro_image contains '.webm' or settings.intro_image contains '.mov' %}
+                            <video src="{{ settings.intro_image }}" autoplay loop muted playsinline style="width: 100%; height: auto; border-radius: var(--btn-radius); box-shadow: var(--glass-shadow);"></video>
+                        {% else %}
+                            <img src="{{ settings.intro_image }}" alt="Aazam Khan">
+                        {% endif %}
                     {% else %}
                         <div class="empty-state">
                             [ Go to /admin to upload your Intro Image in Site Settings ]
@@ -430,12 +448,40 @@
                 <!-- This Liquid loop automatically creates cards for items added in your Admin Dashboard -->
                 {% for project in collections.portfolio reversed %}
                 <div class="portfolio-card">
-                    <div class="portfolio-img">
-                        <img src="{{ project.data.image }}" alt="{{ project.data.title }}">
+                    <!-- Carousel Container -->
+                    <div class="portfolio-carousel">
+                        
+                        <!-- Check for the new Multiple Media Gallery -->
+                        {% if project.data.gallery %}
+                            {% for item in project.data.gallery %}
+                            <div class="carousel-item">
+                                {% if item contains '.mp4' or item contains '.webm' or item contains '.mov' %}
+                                    <video src="{{ item }}" autoplay loop muted playsinline></video>
+                                {% else %}
+                                    <img src="{{ item }}" alt="{{ project.data.title }}">
+                                {% endif %}
+                            </div>
+                            {% endfor %}
+                            
+                        <!-- Fallback for the first test project you already uploaded -->
+                        {% elsif project.data.image %}
+                            <div class="carousel-item">
+                                {% if project.data.image contains '.mp4' or project.data.image contains '.webm' or project.data.image contains '.mov' %}
+                                    <video src="{{ project.data.image }}" autoplay loop muted playsinline></video>
+                                {% else %}
+                                    <img src="{{ project.data.image }}" alt="{{ project.data.title }}">
+                                {% endif %}
+                            </div>
+                        {% endif %}
                     </div>
+                    
                     <div class="portfolio-info">
                         <h4>{{ project.data.title }}</h4>
                         <p>{{ project.data.subtitle }}</p>
+                        <!-- Swipe Hint if there is more than 1 image/video -->
+                        {% if project.data.gallery.size > 1 %}
+                            <p style="font-size: 11px; opacity: 0.5; margin-top: 5px; text-transform: uppercase; letter-spacing: 1px;">⟷ Swipe to view more</p>
+                        {% endif %}
                     </div>
                 </div>
                 {% endfor %}
