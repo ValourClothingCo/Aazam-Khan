@@ -31,13 +31,19 @@
             background: var(--glass-bg); backdrop-filter: blur(24px); border: var(--glass-border);
             box-shadow: var(--glass-shadow); padding: 50px; border-radius: var(--btn-radius);
         }
-        h1 { font-family: 'Barlow Condensed', sans-serif; font-size: 56px; text-transform: uppercase; margin: 0 0 10px 0; line-height: 1.1; }
-        .role { color: var(--sec-1); font-weight: 600; margin-bottom: 40px; font-size: 18px; }
+        h1 { font-family: 'Barlow Condensed', sans-serif; font-size: 56px; text-transform: uppercase; margin: 0 0 30px 0; line-height: 1.1; }
         
-        /* This styles the customizable content you make in the dashboard */
-        .custom-content img, .custom-content video { max-width: 100%; height: auto; border-radius: 10px; margin: 20px 0; box-shadow: var(--glass-shadow); }
-        .custom-content h2, .custom-content h3 { font-family: 'Barlow Condensed', sans-serif; text-transform: uppercase; margin-top: 40px; }
-        .custom-content p { font-size: 16px; color: var(--text-muted); margin-bottom: 20px; }
+        /* Fixed: This makes the subtitle text dark grey/black and readable */
+        .subtitle-text { font-size: 16px; color: var(--text-muted); margin-bottom: 40px; white-space: pre-wrap; line-height: 1.8; }
+        
+        /* Auto-Gallery Styles */
+        .project-media { margin-bottom: 40px; display: flex; flex-direction: column; gap: 20px; }
+        .project-media img, .project-media video { width: 100%; height: auto; border-radius: var(--btn-radius); box-shadow: var(--glass-shadow); display: block; }
+
+        /* Custom Markdown Content Styles */
+        .custom-content img, .custom-content video { max-width: 100%; height: auto; border-radius: var(--btn-radius); margin: 20px 0; box-shadow: var(--glass-shadow); }
+        .custom-content h2, .custom-content h3 { font-family: 'Barlow Condensed', sans-serif; text-transform: uppercase; margin-top: 40px; color: var(--text-main); }
+        .custom-content p { font-size: 16px; color: var(--text-muted); margin-bottom: 20px; line-height: 1.8; }
     </style>
 </head>
 <body>
@@ -49,9 +55,30 @@
     <div class="container">
         <div class="glass-panel">
             <h1>{{ title }}</h1>
-            <div class="role">{{ subtitle }}</div>
             
-            <!-- MAGIC TAG: This injects whatever you design in the Markdown editor -->
+            <!-- MAGIC FIX 1: Automatically load all gallery media files here -->
+            <div class="project-media">
+                {% if gallery %}
+                    {% for item in gallery %}
+                        {% if item contains '.mp4' or item contains '.webm' or item contains '.mov' %}
+                            <video src="{{ item }}" autoplay loop muted playsinline controls></video>
+                        {% else %}
+                            <img src="{{ item }}" alt="{{ title }}">
+                        {% endif %}
+                    {% endfor %}
+                {% elsif image %}
+                    {% if image contains '.mp4' or image contains '.webm' or image contains '.mov' %}
+                        <video src="{{ image }}" autoplay loop muted playsinline controls></video>
+                    {% else %}
+                        <img src="{{ image }}" alt="{{ title }}">
+                    {% endif %}
+                {% endif %}
+            </div>
+
+            <!-- MAGIC FIX 2: Text is now colored correctly and cleanly spaced -->
+            <div class="subtitle-text">{{ subtitle }}</div>
+            
+            <!-- Any extra custom layout you build in the "Body" Markdown editor will appear here -->
             <div class="custom-content">
                 {{ content }}
             </div>
