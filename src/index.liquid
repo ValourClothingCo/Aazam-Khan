@@ -321,12 +321,12 @@
             <h2 class="section-header">Contact Me</h2>
             <div class="glass-panel">
                 <!-- Connected to FormSubmit -->
-                <form class="contact-form" action="https://formsubmit.co/{{ settings.contact_email | default: 'support@valour.co.in' }}" method="POST">
-                    
-                    <!-- FormSubmit Configuration -->
-                    <input type="hidden" name="_subject" value="New Portfolio Inquiry from Aazam Khan Website!">
-                    <input type="hidden" name="_captcha" value="false">
-                    
+                <!-- Connected natively to Netlify Forms -->
+                <form class="contact-form" name="portfolio-contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+                    <!-- Hidden field to trick spam bots -->
+                    <p style="display: none;">
+                        <label>Don’t fill this out if you're human: <input name="bot-field" /></label>
+                    </p>
                     <input type="text" name="name" placeholder="Your Name" required>
                     <input type="email" name="email" placeholder="Your Email Address" required>
                     <input type="text" name="subject" placeholder="Project Subject / Inquiry">
