@@ -70,7 +70,8 @@ collections:
               - {label: "Degree / Course", name: "title", widget: "string"}
               - {label: "Institution", name: "subtitle", widget: "string"}
 
-          - label: "Skills & Tools"
-            name: "skills"
-            widget: "list"
-            field: {label: "Skill Name", name: "skill_name", widget: "string"}
+          - label: "Toolkit & Skills (Comma-separated)"
+            name: "skills_string"
+            widget: "string"
+            default: "Adobe Illustrator, Adobe Photoshop, Blender 3D, Shopify, Meta Ads, Premiere Pro"
+            required: false
